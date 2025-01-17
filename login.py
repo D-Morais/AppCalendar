@@ -19,7 +19,7 @@ def user_login():
         st.session_state["logged_in"] = False
 
     if not st.session_state["logged_in"]:
-        with st.form(key="login_form"):
+        with st.sidebar.form(key="login_form"):
             st.subheader("Login")
             name = st.text_input("Nome do usuário")
             password = st.text_input("Senha", type="password")

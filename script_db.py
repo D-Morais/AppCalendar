@@ -132,6 +132,24 @@ def save_to_excel(df):
     df.to_excel("ferias.xlsx", index=False)
 
 
+def remove_user(name):
+    conexao = connect()
+    cursor = conexao.cursor()
+
+    try:
+        cursor.execute(
+            """DELETE FROM users WHERE username = ?;""", (name, )
+        )
+        conexao.commit()
+        return f"Usuário removido com sucesso."
+
+    except sql.Error as er:
+        conexao.rollback()
+        return f"Erro ao remover o usuário: {er}"
+    finally:
+        conexao.close()
+
+
 def remove_vacation(name):
     conexao = connect()
     cursor = conexao.cursor()
